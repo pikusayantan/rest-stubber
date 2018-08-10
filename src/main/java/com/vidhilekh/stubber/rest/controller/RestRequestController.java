@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 public class RestRequestController {
 	
-	@RequestMapping(path = "/**", consumes = MediaType.ALL_VALUE , produces = MediaType.ALL_VALUE)
+	@RequestMapping(path = "/stub/**", consumes = MediaType.ALL_VALUE , produces = MediaType.ALL_VALUE)
 	public ResponseEntity<String> allRequest(HttpServletRequest httpRequest, @RequestBody(required = false) String reqBody) throws JsonParseException, JsonMappingException, IOException{
 		System.out.println("resource url:" + httpRequest.getRequestURI()+" Method:"+httpRequest.getMethod());
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -28,7 +28,7 @@ public class RestRequestController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("content-type", MediaType.APPLICATION_JSON_VALUE).body(jsonNode.toString());
 	}
 	
-	@RequestMapping(path = "/**", method=RequestMethod.GET, consumes = MediaType.ALL_VALUE , produces = MediaType.ALL_VALUE)
+	@RequestMapping(path = "/stub/**", method=RequestMethod.GET, consumes = MediaType.ALL_VALUE , produces = MediaType.ALL_VALUE)
 	public ResponseEntity<String> getRequest(HttpServletRequest httpRequest) throws JsonParseException, JsonMappingException, IOException{
 		System.out.println("resource url:" + httpRequest.getRequestURI()+" Method:"+httpRequest.getMethod());
 		return ResponseEntity.status(HttpStatus.OK).header("content-type", MediaType.APPLICATION_JSON_VALUE).body("{\"one\": \"AAA\"}");
