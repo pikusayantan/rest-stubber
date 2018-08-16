@@ -13,13 +13,13 @@ public class StubRegistrationController {
 	
 	private LoggedUser loggedUser;
 
+	//sample
     @PostMapping("/stubber/register")
     public String greeting(@ModelAttribute LoggedUser loggedUser) {
-    	System.out.println("object "+loggedUser.getUsername());
-    	System.out.println("object "+this.loggedUser.getUsername());
         return "greeting";
     }
     
+    //login page
     @GetMapping("/stubber/login")
     public String login(Model model) {
     	loggedUser = new LoggedUser();
@@ -27,6 +27,28 @@ public class StubRegistrationController {
     	return "userLogin";
     }
     
+    //Frame page
+    @PostMapping("/stubber/mainFrame")
+    public String registerApi(@ModelAttribute LoggedUser loggedUser) {
+    	this.loggedUser=loggedUser;
+        return "mainFrame";
+    }
+    
+    //Dashboard
+    @GetMapping("/stubber/dashboard")
+    public String dashboard(Model model) {
+    	model.addAttribute("loggedUser", loggedUser);
+    	return "dashboard";
+    }
+    
+    //API register
+    @GetMapping("/stubber/api/register")
+    public String apiRegister(Model model) {
+    	model.addAttribute("loggedUser", loggedUser);
+    	return "api/register";
+    }
+    
+    //default page
     @GetMapping("/stubber/**")
     public String loginRedirect(Model model) {
     	return login(model);

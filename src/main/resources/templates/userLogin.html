@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -10,7 +11,7 @@
     <div>
         <h3>Welcome to Stub Registration Page</h3>
         
-        <form th:action="@{/stubber/api-registration}" th:object="${loggedUser}" method="post">
+        <form th:action="@{/stubber/mainFrame}" th:object="${loggedUser}" method="post">
             <label for="username">Enter Username</label>
             <input type="text" id="username" placeholder="Your username.." th:field="*{username}">
             <input type="submit" value="Submit">
