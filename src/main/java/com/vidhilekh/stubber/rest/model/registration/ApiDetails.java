@@ -1,6 +1,6 @@
 package com.vidhilekh.stubber.rest.model.registration;
 
-public class ApiRegistration {
+public class ApiDetails {
 	
 	private String apiName;
 	private String createdBy;
