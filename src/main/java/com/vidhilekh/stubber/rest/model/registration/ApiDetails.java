@@ -2,12 +2,19 @@ package com.vidhilekh.stubber.rest.model.registration;
 
 public class ApiDetails {
 	
+	private String currentUser;
 	private String apiName;
 	private String createdBy;
 	private String createdOn;
 	private String modifiedBy;
 	private String modifiedOn;
 	
+	public String getCurrentUser() {
+		return currentUser;
+	}
+	public void setCurrentUser(String currentUser) {
+		this.currentUser = currentUser;
+	}
 	public String getApiName() {
 		return apiName;
 	}

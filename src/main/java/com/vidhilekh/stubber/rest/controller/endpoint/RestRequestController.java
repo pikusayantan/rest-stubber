@@ -1,4 +1,4 @@
-package com.vidhilekh.stubber.rest.controller;
+package com.vidhilekh.stubber.rest.controller.endpoint;
 
 import java.io.IOException;
 

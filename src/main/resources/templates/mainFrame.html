@@ -92,7 +92,7 @@ iframe {
     <i class="sa-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="api/register" target="iframe_a">Register</a>
+    <a th:href="@{'/stubber/api/register?username='+ ${loggedUser.username}}" target="iframe_a">Register</a>
     <a href="#">Edit</a>
     <a href="#">Delete</a>
   </div>
