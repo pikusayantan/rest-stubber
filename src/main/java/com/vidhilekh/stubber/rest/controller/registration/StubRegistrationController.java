@@ -5,8 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.vidhilekh.stubber.rest.model.registration.ApiDetails;
 import com.vidhilekh.stubber.rest.model.registration.LoggedUser;
 
 @Controller
@@ -31,14 +31,13 @@ public class StubRegistrationController {
     //Frame page
     @PostMapping("/stubber/mainFrame")
     public String registerApi(@ModelAttribute LoggedUser loggedUser) {
-    	this.loggedUser=loggedUser;
         return "mainFrame";
     }
     
     //Dashboard
     @GetMapping("/stubber/dashboard")
-    public String dashboard(Model model) {
-    	model.addAttribute("loggedUser", loggedUser);
+    public String dashboard(Model model, @RequestParam String username) {
+    	model.addAttribute("username", username);
     	return "dashboard";
     }
     

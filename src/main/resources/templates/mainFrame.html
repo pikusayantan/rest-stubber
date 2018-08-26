@@ -116,7 +116,7 @@ iframe {
 </div>
 
 <div class="main">
-<iframe src="dashboard" width="100%" name="iframe_a"></iframe>
+<iframe th:src="@{'/stubber/dashboard?username='+ ${loggedUser.username}}" width="100%" name="iframe_a"></iframe>
 </div>
 
 <script>

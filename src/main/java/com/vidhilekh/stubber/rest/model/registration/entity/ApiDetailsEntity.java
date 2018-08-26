@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "API_DETAILS")
-public class ApiDetails implements Serializable {
+public class ApiDetailsEntity implements Serializable {
 
 	private static final long serialVersionUID = 1043033575097072403L;
 
