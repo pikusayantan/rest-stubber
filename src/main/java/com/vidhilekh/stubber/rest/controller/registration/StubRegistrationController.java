@@ -11,8 +11,6 @@ import com.vidhilekh.stubber.rest.model.registration.LoggedUser;
 
 @Controller
 public class StubRegistrationController {
-	
-	private LoggedUser loggedUser;
 
 	//sample
     @PostMapping("/stubber/register")
@@ -23,7 +21,7 @@ public class StubRegistrationController {
     //login page
     @GetMapping("/stubber/login")
     public String login(Model model) {
-    	loggedUser = new LoggedUser();
+    	LoggedUser loggedUser = new LoggedUser();
     	model.addAttribute("loggedUser", loggedUser);
     	return "userLogin";
     }

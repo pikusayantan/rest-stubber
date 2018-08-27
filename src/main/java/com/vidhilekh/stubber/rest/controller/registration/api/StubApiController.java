@@ -14,8 +14,7 @@ import com.vidhilekh.stubber.rest.service.registration.SaveApiDetailsService;
 @Controller
 public class StubApiController {
 	
-	private ApiDetails apiDetails;
-	private SaveApiDetailsService saveApiDetailsService;
+	private final SaveApiDetailsService saveApiDetailsService;
 	
 	@Autowired
 	public StubApiController(SaveApiDetailsService saveApiDetailsService) {
@@ -26,18 +25,17 @@ public class StubApiController {
 	//API register
     @GetMapping("/stubber/api/register")
     public String apiRegister(Model model, @RequestParam String username) {
-    	apiDetails=new ApiDetails();
+    	ApiDetails apiDetails=new ApiDetails();
     	apiDetails.setCurrentUser(username);
-    	apiDetails.setCreatedBy(username);
-    	apiDetails.setModifiedBy(username);
     	model.addAttribute("apiDetails", apiDetails);
     	return "api/register";
     }
     
     //Save api details to db 
     @PostMapping("/stubber/api/register/save")
-    public String saveApi(@ModelAttribute ApiDetails apiDetails) {
-//    	this.apiDetails = saveApiDetailsService.saveApiDetails();
+    public String saveApi(Model model, @ModelAttribute ApiDetails apiDetails) {
+    	apiDetails = saveApiDetailsService.saveApiDetails(apiDetails);
+    	model.addAttribute("apiDetails", apiDetails);
         return "api/showApiDetails";
     }
 	

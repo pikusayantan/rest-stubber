@@ -28,8 +28,8 @@ public class ApiDetailsEntity implements Serializable {
 	@Column(name = "CREATED_ON")
 	private Timestamp createdOn;
 
-	@Column(name = "MODIFIED_BY")
-	private String modifiedBy;
+	@Column(name = "LAST_MODIFIED_BY")
+	private String lastModifiedBy;
 
 	@Column(name = "LAST_MODIFIED_ON")
 	private Timestamp lastModifiedOn;
@@ -66,12 +66,12 @@ public class ApiDetailsEntity implements Serializable {
 		this.createdOn = createdOn;
 	}
 
-	public String getModifiedBy() {
-		return modifiedBy;
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
 	}
 
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
 	}
 
 	public Timestamp getLastModifiedOn() {

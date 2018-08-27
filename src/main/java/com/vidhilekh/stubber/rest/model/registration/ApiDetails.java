@@ -6,8 +6,8 @@ public class ApiDetails {
 	private String apiName;
 	private String createdBy;
 	private String createdOn;
-	private String modifiedBy;
-	private String modifiedOn;
+	private String lastModifiedBy;
+	private String lastModifiedOn;
 	
 	public String getCurrentUser() {
 		return currentUser;
@@ -33,17 +33,17 @@ public class ApiDetails {
 	public void setCreatedOn(String createdOn) {
 		this.createdOn = createdOn;
 	}
-	public String getModifiedBy() {
-		return modifiedBy;
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
 	}
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
 	}
-	public String getModifiedOn() {
-		return modifiedOn;
+	public String getLastModifiedOn() {
+		return lastModifiedOn;
 	}
-	public void setModifiedOn(String modifiedOn) {
-		this.modifiedOn = modifiedOn;
+	public void setLastModifiedOn(String lastModifiedOn) {
+		this.lastModifiedOn = lastModifiedOn;
 	}
 
 }

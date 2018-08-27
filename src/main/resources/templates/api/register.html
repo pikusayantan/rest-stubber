@@ -12,6 +12,7 @@
 		<form th:action="@{/stubber/api/register/save}" th:object="${apiDetails}" method="post">
 			<label for="apiName">Enter API Name</label> 
 			<input type="text" id="apiName" placeholder="Ex. my-sample-api" th:field="*{apiName}">
+			<input type="hidden" id="currentUser" th:field="*{currentUser}">
 			<input type="submit" value="Submit">
 		</form>
 	</div>

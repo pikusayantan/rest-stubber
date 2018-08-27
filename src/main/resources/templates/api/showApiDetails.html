@@ -9,7 +9,20 @@
 	<div>
 		<h3>API Details</h3>
 			<label for="apiName">Enter API Name</label> 
-			<input type="text" id="apiName" placeholder="Ex. my-sample-api" th:field="${apiDetails.apiName}"/>
+			<input type="text" id="apiName" th:field="${apiDetails.apiName}" disabled/>
+			
+			<label for="createdBy">Created By</label> 
+			<input type="text" id="createdBy" th:field="${apiDetails.createdBy}" disabled/>
+			
+			<label for="createdOn">Created On</label> 
+			<input type="text" id="createdOn" th:field="${apiDetails.createdOn}" disabled/>
+			
+			<label for="lastModifiedBy">Last Modified By</label> 
+			<input type="text" id="lastModifiedBy" th:field="${apiDetails.lastModifiedBy}" disabled/>
+			
+			<label for="lastModifiedOn">Last Modified On</label> 
+			<input type="text" id="lastModifiedOn" th:field="${apiDetails.lastModifiedOn}" disabled/>
+			
 	</div>
 </body>
 </html>
