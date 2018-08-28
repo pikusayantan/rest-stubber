@@ -3,6 +3,7 @@ package com.vidhilekh.stubber.rest.model.registration;
 public class ApiDetails {
 	
 	private String currentUser;
+	private Long apiId;
 	private String apiName;
 	private String createdBy;
 	private String createdOn;
@@ -14,6 +15,12 @@ public class ApiDetails {
 	}
 	public void setCurrentUser(String currentUser) {
 		this.currentUser = currentUser;
+	}
+	public Long getApiId() {
+		return apiId;
+	}
+	public void setApiId(Long apiId) {
+		this.apiId = apiId;
 	}
 	public String getApiName() {
 		return apiName;

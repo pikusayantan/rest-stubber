@@ -6,23 +6,61 @@
 </head>
 <body>
 	<p th:text="'Hello , ' + ${apiDetails.currentUser} + '!'" />
-	<div>
-		<h3>API Details</h3>
+	
+	<div th:if="${renderShowApiDetails.showSearchDiv}">
+		<h3>Search API Details</h3>
+		
+		<form th:action="@{/stubber/api/search}" th:object="${apiDetails}" method="post">
 			<label for="apiName">Enter API Name</label> 
-			<input type="text" id="apiName" th:field="${apiDetails.apiName}" disabled/>
+			<input type="text" id="apiName" th:field="*{apiName}" disabled/>
+			
+			<input type="hidden" id="currentUser" th:field="*{currentUser}">
+			<input type="submit" value="Search">
+		</form>		
+	</div>
+	
+	<div th:if="${renderShowApiDetails.showDisplayApiDiv}">
+		<h3>API Details</h3>
+		<form th:action="@{/stubber/api/edit}" th:object="${apiDetails}" method="post">
+			<label for="apiName">Enter API Name</label> 
+			<input type="text" id="apiName" th:field="*{apiName}" disabled/>
 			
 			<label for="createdBy">Created By</label> 
-			<input type="text" id="createdBy" th:field="${apiDetails.createdBy}" disabled/>
+			<input type="text" id="createdBy" th:field="*{createdBy}" disabled/>
 			
 			<label for="createdOn">Created On</label> 
-			<input type="text" id="createdOn" th:field="${apiDetails.createdOn}" disabled/>
+			<input type="text" id="createdOn" th:field="*{createdOn}" disabled/>
 			
 			<label for="lastModifiedBy">Last Modified By</label> 
-			<input type="text" id="lastModifiedBy" th:field="${apiDetails.lastModifiedBy}" disabled/>
+			<input type="text" id="lastModifiedBy" th:field="*{lastModifiedBy}" disabled/>
 			
 			<label for="lastModifiedOn">Last Modified On</label> 
-			<input type="text" id="lastModifiedOn" th:field="${apiDetails.lastModifiedOn}" disabled/>
+			<input type="text" id="lastModifiedOn" th:field="*{lastModifiedOn}" disabled/>
 			
+			<input type="hidden" id="currentUser" th:field="*{currentUser}">
+			<input type="hidden" id="apiId" th:field="*{apiId}">
+			<input type="hidden" id="apiName" th:field="*{apiName}"/>
+			<input type="hidden" id="createdBy" th:field="*{createdBy}"/>
+			<input type="hidden" id="createdOn" th:field="*{createdOn}"/>
+			
+			<input type="submit" value="Edit">
+		</form>
 	</div>
+	
+	<div th:if="${renderShowApiDetails.showEditApiDiv}">
+		<h3>Edit API Details</h3>
+		<form th:action="@{/stubber/api/update}" th:object="${apiDetails}" method="post">
+			<label for="apiName">Edit API Name</label> 
+			<input type="text" id="apiName" th:field="*{apiName}"/>
+			
+			<input type="hidden" id="currentUser" th:field="*{currentUser}">
+			<input type="hidden" id="apiId" th:field="*{apiId}">
+			<input type="hidden" id="createdBy" th:field="*{createdBy}"/>
+			<input type="hidden" id="createdOn" th:field="*{createdOn}"/>
+			
+			<input type="submit" value="Update">
+		</form>
+	</div>
+	
 </body>
 </html>

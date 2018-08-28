@@ -9,7 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 @Entity(name = "API_DETAILS")
+@DynamicUpdate
 public class ApiDetailsEntity implements Serializable {
 
 	private static final long serialVersionUID = 1043033575097072403L;
@@ -17,15 +20,15 @@ public class ApiDetailsEntity implements Serializable {
 	@Id
 	@Column(name = "API_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long appId;
+	private Long apiId;
 
 	@Column(name = "API_NAME")
 	private String apiName;
 
-	@Column(name = "CREATED_BY")
+	@Column(name = "CREATED_BY", updatable = false)
 	private String createdBy;
 
-	@Column(name = "CREATED_ON")
+	@Column(name = "CREATED_ON", updatable = false)
 	private Timestamp createdOn;
 
 	@Column(name = "LAST_MODIFIED_BY")
@@ -34,12 +37,12 @@ public class ApiDetailsEntity implements Serializable {
 	@Column(name = "LAST_MODIFIED_ON")
 	private Timestamp lastModifiedOn;
 
-	public Long getAppId() {
-		return appId;
+	public Long getApiId() {
+		return apiId;
 	}
 
-	public void setAppId(Long appId) {
-		this.appId = appId;
+	public void setApiId(Long apiId) {
+		this.apiId = apiId;
 	}
 
 	public String getApiName() {
