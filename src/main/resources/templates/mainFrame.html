@@ -94,7 +94,7 @@ iframe {
   <div class="dropdown-container">
     <a th:href="@{'/stubber/api/register?username='+ ${loggedUser.username}}" target="iframe_a">Register</a>
     <a href="#">Search</a>
-    <a href="@{'/stubber/api/edit?username='+ ${loggedUser.username}}">Edit</a>
+    <a th:href="@{'/stubber/api/edit?username='+ ${loggedUser.username}}" target="iframe_a">Edit</a>
     <a href="#">Delete</a>
   </div>
   <button class="dropdown-btn">Resource 
