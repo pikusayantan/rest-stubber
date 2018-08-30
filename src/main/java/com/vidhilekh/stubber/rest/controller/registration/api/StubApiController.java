@@ -20,6 +20,8 @@ import com.vidhilekh.stubber.rest.service.registration.ApiDetailsService;
 public class StubApiController {
 	
 	private final ApiDetailsService apiDetailsService;
+	private final static String SHOW_API_DETAIL_PAGE = "api/showApiDetails";
+	private final static String DELETE_API_DETAIL_PAGE = "api/deleteApiDetails";
 	
 	@Autowired
 	public StubApiController(ApiDetailsService apiDetailsService) {
@@ -44,7 +46,7 @@ public class StubApiController {
     	renderShowApiDetails.setShowDisplayApiDiv(true);
     	model.addAttribute("apiDetails", apiDetailsResp);
     	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
-        return "api/showApiDetails";
+        return SHOW_API_DETAIL_PAGE;
     }
     
     //Edit api details on form button click
@@ -54,7 +56,7 @@ public class StubApiController {
     	renderShowApiDetails.setShowEditApiDiv(true);
     	model.addAttribute("apiDetails", apiDetails);
     	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
-        return "api/showApiDetails";
+        return SHOW_API_DETAIL_PAGE;
     }
     
     //Update api details to db
@@ -65,7 +67,7 @@ public class StubApiController {
     	renderShowApiDetails.setShowDisplayApiDiv(true);
     	model.addAttribute("apiDetails", apiDetailsResp);
     	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
-        return "api/showApiDetails";
+        return SHOW_API_DETAIL_PAGE;
     }
     
     //Edit api details on sidepane option click
@@ -78,7 +80,7 @@ public class StubApiController {
     	apiDetails.setOperation("edit");
     	model.addAttribute("apiDetails", apiDetails);
     	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
-        return "api/showApiDetails";
+        return SHOW_API_DETAIL_PAGE;
     }
     
     //Search api details from db
@@ -99,7 +101,7 @@ public class StubApiController {
         	}
         	renderShowApiDetails.setShowSearchDiv(true);
         	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
-    		return "api/showApiDetails";
+    		return SHOW_API_DETAIL_PAGE;
     	} 
     	else if(apiDetails.getOperation().equalsIgnoreCase("delete")){
     		RenderDeleteApiDetails renderDeleteApiDetails = new RenderDeleteApiDetails();
@@ -110,7 +112,7 @@ public class StubApiController {
         	}
     		renderDeleteApiDetails.setShowSearchDiv(true);
         	model.addAttribute("renderDeleteApiDetails", renderDeleteApiDetails);
-    		return "api/deleteApiDetails";
+    		return DELETE_API_DETAIL_PAGE;
     	} 
     	return null;
     }
@@ -129,7 +131,7 @@ public class StubApiController {
     	
     	model.addAttribute("apiDetails", apiDetailsResp);
     	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
-        return "api/showApiDetails";
+        return SHOW_API_DETAIL_PAGE;
     }
     
     //Delete api details from sidepane option click
@@ -142,7 +144,7 @@ public class StubApiController {
     	apiDetails.setOperation("delete");
     	model.addAttribute("apiDetails", apiDetails);
     	model.addAttribute("renderDeleteApiDetails", renderDeleteApiDetails);
-        return "api/deleteApiDetails";
+        return DELETE_API_DETAIL_PAGE;
     }
     
     //Delete api details from table list of apis
@@ -160,7 +162,17 @@ public class StubApiController {
     	
     	model.addAttribute("apiDetails", apiDetailsResp);
     	model.addAttribute("renderDeleteApiDetails", renderDeleteApiDetails);
-        return "api/deleteApiDetails";
+        return DELETE_API_DETAIL_PAGE;
+    }
+    
+    //Detail API search when sidepane Search option clicked
+    @GetMapping("/stubber/api/detailSearch")
+    public String detailSearch(Model model, @RequestParam String username) {
+    	
+    	ApiDetails apiDetails = new ApiDetails();
+    	apiDetails.setCurrentUser(username);
+    	model.addAttribute("apiDetails", apiDetails);
+        return "api/detailSearch";
     }
 	
 }
