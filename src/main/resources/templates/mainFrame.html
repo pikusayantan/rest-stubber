@@ -87,15 +87,15 @@ iframe {
 <body>
 
 <div class="sidenav">
-  <a href="dashboard" target="iframe_a">Dashboard</a>
+  <a th:href="@{'/stubber/dashboard?username='+ ${loggedUser.username}}" target="iframe_a">Dashboard</a>
   <button class="dropdown-btn">API 
     <i class="sa-down"></i>
   </button>
   <div class="dropdown-container">
-    <a th:href="@{'/stubber/api/register?username='+ ${loggedUser.username}}" target="iframe_a">Register</a>
+    <a th:href="@{'/stubber/api/register?username='+ ${loggedUser.username}}" target="iframe_a">Create</a>
     <a href="#">Search</a>
     <a th:href="@{'/stubber/api/edit?username='+ ${loggedUser.username}}" target="iframe_a">Edit</a>
-    <a href="#">Delete</a>
+    <a th:href="@{'/stubber/api/delete?username='+ ${loggedUser.username}}" target="iframe_a">Delete</a>
   </div>
   <button class="dropdown-btn">Resource 
     <i class="sa-down"></i>

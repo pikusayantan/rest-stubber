@@ -31,4 +31,10 @@ public class ApiDetailsToApiDetailsEntity {
 		return apiDetailsEntity;
 	}
 
+	public ApiDetailsEntity convertToDeleteById(ApiDetails apiDetails) {
+		ApiDetailsEntity apiDetailsEntity = new ApiDetailsEntity();
+		apiDetailsEntity.setApiId(apiDetails.getApiId());
+		return apiDetailsEntity;
+	}
+
 }

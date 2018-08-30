@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vidhilekh.stubber.rest.model.registration.ApiDetails;
 import com.vidhilekh.stubber.rest.model.registration.entity.ApiDetailsEntity;
+import com.vidhilekh.stubber.rest.model.registration.render.RenderDeleteApiDetails;
 import com.vidhilekh.stubber.rest.model.registration.render.RenderShowApiDetails;
 import com.vidhilekh.stubber.rest.service.registration.ApiDetailsService;
 
@@ -74,26 +75,44 @@ public class StubApiController {
     	renderShowApiDetails.setShowSearchDiv(true);
     	ApiDetails apiDetails = new ApiDetails();
     	apiDetails.setCurrentUser(username);
+    	apiDetails.setOperation("edit");
     	model.addAttribute("apiDetails", apiDetails);
     	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
         return "api/showApiDetails";
     }
     
-    //Update api details to db
+    //Search api details from db
     @PostMapping("/stubber/api/search")
     public String searchApi(Model model, @ModelAttribute ApiDetails apiDetails) {
+    	System.out.println("============="+apiDetails.getOperation());
     	List<ApiDetailsEntity> apiDetailsRespList = apiDetailsService.searchApiDetailsList(apiDetails);
-    	RenderShowApiDetails renderShowApiDetails = new RenderShowApiDetails();
-    	if(apiDetailsRespList.isEmpty()) {
-    		renderShowApiDetails.setShowNoResultDiv(true);
-    	}else {
-    		renderShowApiDetails.setShowSearchListDiv(true);
-    	}
-    	renderShowApiDetails.setShowSearchDiv(true);
+    	
     	model.addAttribute("apiDetailsList", apiDetailsRespList);
-    	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
     	model.addAttribute("apiDetails", apiDetails);
-        return "api/showApiDetails";
+    	
+    	if(apiDetails.getOperation().equalsIgnoreCase("edit")) {
+    		RenderShowApiDetails renderShowApiDetails = new RenderShowApiDetails();
+        	if(apiDetailsRespList.isEmpty()) {
+        		renderShowApiDetails.setShowNoResultDiv(true);
+        	}else {
+        		renderShowApiDetails.setShowSearchListDiv(true);
+        	}
+        	renderShowApiDetails.setShowSearchDiv(true);
+        	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
+    		return "api/showApiDetails";
+    	} 
+    	else if(apiDetails.getOperation().equalsIgnoreCase("delete")){
+    		RenderDeleteApiDetails renderDeleteApiDetails = new RenderDeleteApiDetails();
+    		if(apiDetailsRespList.isEmpty()) {
+    			renderDeleteApiDetails.setShowNoResultDiv(true);
+        	}else {
+        		renderDeleteApiDetails.setShowSearchListDiv(true);
+        	}
+    		renderDeleteApiDetails.setShowSearchDiv(true);
+        	model.addAttribute("renderDeleteApiDetails", renderDeleteApiDetails);
+    		return "api/deleteApiDetails";
+    	} 
+    	return null;
     }
     
     //Edit api details from table list of apis
@@ -111,6 +130,37 @@ public class StubApiController {
     	model.addAttribute("apiDetails", apiDetailsResp);
     	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
         return "api/showApiDetails";
+    }
+    
+    //Delete api details from sidepane option click
+    @GetMapping("/stubber/api/delete")
+    public String deleteApi(Model model, @RequestParam String username) {
+    	RenderDeleteApiDetails renderDeleteApiDetails = new RenderDeleteApiDetails();
+    	renderDeleteApiDetails.setShowSearchDiv(true);
+    	ApiDetails apiDetails = new ApiDetails();
+    	apiDetails.setCurrentUser(username);
+    	apiDetails.setOperation("delete");
+    	model.addAttribute("apiDetails", apiDetails);
+    	model.addAttribute("renderDeleteApiDetails", renderDeleteApiDetails);
+        return "api/deleteApiDetails";
+    }
+    
+    //Delete api details from table list of apis
+    @GetMapping("/stubber/api/deletebyid")
+    public String deleteApiById(Model model, @RequestParam String username, @RequestParam String apiid ) {
+    	ApiDetails apiDetails = new ApiDetails();
+    	apiDetails.setCurrentUser(username);
+    	apiDetails.setApiId(Long.parseLong(apiid));
+    	
+    	ApiDetails apiDetailsResp = apiDetailsService.deleteApiDetailsById(apiDetails);
+    	
+    	RenderDeleteApiDetails renderDeleteApiDetails = new RenderDeleteApiDetails();
+    	renderDeleteApiDetails.setShowSearchDiv(true);
+    	renderDeleteApiDetails.setShowDeleteMessageDiv(true);
+    	
+    	model.addAttribute("apiDetails", apiDetailsResp);
+    	model.addAttribute("renderDeleteApiDetails", renderDeleteApiDetails);
+        return "api/deleteApiDetails";
     }
 	
 }

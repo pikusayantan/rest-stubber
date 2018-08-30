@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="../../../css/styles.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p th:text="'Hello , ' + ${apiDetails.currentUser} + '!'" />
+	
+	<div th:if="${renderDeleteApiDetails.showSearchDiv}">
+		<h3>Delete API Details</h3>
+		
+		<form th:action="@{/stubber/api/search}" th:object="${apiDetails}" method="post">
+			<label for="apiName">Enter API Name</label> 
+			<input type="text" id="apiName" th:field="*{apiName}"/>
+			
+			<input type="hidden" id="currentUser" th:field="*{currentUser}">
+			<input type="hidden" id="operation" th:field="*{operation}" value="delete">
+			<input type="submit" value="Search">
+		</form>		
+	</div>
+	
+	<div th:if="${renderDeleteApiDetails.showNoResultDiv}">
+		<p th:text="'No API found with name matching ' + ${apiDetails.apiName}" />
+	</div>
+	
+	<div th:if="${renderDeleteApiDetails.showSearchListDiv}">
+		<table id="t01">
+			<tr>
+				<th>API Name</th>
+				<th>Created By</th>
+				<th/>
+			</tr>
+			<tr th:each="apiDetail : ${apiDetailsList}">
+				<td th:text="${apiDetail.apiName}" />
+				<td th:text="${apiDetail.createdBy}" />
+				<td><a th:href="@{'/stubber/api/deletebyid?username='+ ${apiDetails.currentUser} + '&apiid=' + ${apiDetail.apiId}}">delete</a></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div th:if="${renderDeleteApiDetails.showDeleteMessageDiv}">
+		<p th:text="'API deleted successfully!! ' + ${apiDetails.apiId}" />
+	</div>
+	
+</body>
+</html>

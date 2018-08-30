@@ -56,4 +56,10 @@ public class ApiDetailsService {
 		return apiDetailsEntityToApiDetails.convertForSave(respEntity, apiDetails.getCurrentUser());
 	}
 
+	public ApiDetails deleteApiDetailsById(ApiDetails apiDetails) {
+		ApiDetailsEntity apiDetailsEntity = apiDetailsToApiDetailsEntity.convertToDeleteById(apiDetails);
+		apiDetailsRepository.delete(apiDetailsEntity);
+		return apiDetails;
+	}
+
 }

@@ -15,6 +15,7 @@
 			<input type="text" id="apiName" th:field="*{apiName}"/>
 			
 			<input type="hidden" id="currentUser" th:field="*{currentUser}">
+			<input type="hidden" id="operation" th:field="*{operation}">
 			<input type="submit" value="Search">
 		</form>		
 	</div>
@@ -27,10 +28,12 @@
 		<table id="t01">
 			<tr>
 				<th>API Name</th>
+				<th>Created By</th>
 				<th/>
 			</tr>
 			<tr th:each="apiDetail : ${apiDetailsList}">
 				<td th:text="${apiDetail.apiName}" />
+				<td th:text="${apiDetail.createdBy}" />
 				<td><a th:href="@{'/stubber/api/editbyid?username='+ ${apiDetails.currentUser} + '&apiid=' + ${apiDetail.apiId}}">Edit</a></td>
 			</tr>
 		</table>

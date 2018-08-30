@@ -9,6 +9,7 @@ public class ApiDetails {
 	private String createdOn;
 	private String lastModifiedBy;
 	private String lastModifiedOn;
+	private String operation;
 	
 	public String getCurrentUser() {
 		return currentUser;
@@ -52,5 +53,10 @@ public class ApiDetails {
 	public void setLastModifiedOn(String lastModifiedOn) {
 		this.lastModifiedOn = lastModifiedOn;
 	}
-
+	public String getOperation() {
+		return operation;
+	}
+	public void setOperation(String operation) {
+		this.operation = operation;
+	}
 }
