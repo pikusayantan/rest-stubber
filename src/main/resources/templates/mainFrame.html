@@ -101,9 +101,9 @@ iframe {
     <i class="sa-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
+    <a th:href="@{'/stubber/resource/register?username='+ ${loggedUser.username}}" target="iframe_a">Create</a>
+    <a href="#">Edit</a>
+    <a href="#">Delete</a>
   </div>
   <button class="dropdown-btn">Stub 
     <i class="sa-down"></i>

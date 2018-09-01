@@ -2,12 +2,16 @@ package com.vidhilekh.stubber.rest.model.registration.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -36,6 +40,9 @@ public class ApiDetailsEntity implements Serializable {
 
 	@Column(name = "LAST_MODIFIED_ON")
 	private Timestamp lastModifiedOn;
+	
+	@OneToMany(mappedBy="apiDetailsEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
+	private List<ResourceDetailsEntity> resourceDetailsEntityList;
 
 	public Long getApiId() {
 		return apiId;
@@ -83,6 +90,14 @@ public class ApiDetailsEntity implements Serializable {
 
 	public void setLastModifiedOn(Timestamp lastModifiedOn) {
 		this.lastModifiedOn = lastModifiedOn;
+	}
+
+	public List<ResourceDetailsEntity> getResourceDetailsEntityList() {
+		return resourceDetailsEntityList;
+	}
+
+	public void setResourceDetailsEntityList(List<ResourceDetailsEntity> resourceDetailsEntityList) {
+		this.resourceDetailsEntityList = resourceDetailsEntityList;
 	}
 
 }

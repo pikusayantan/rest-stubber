@@ -20,8 +20,8 @@ import com.vidhilekh.stubber.rest.service.registration.ApiDetailsService;
 public class StubApiController {
 	
 	private final ApiDetailsService apiDetailsService;
-	private final static String SHOW_API_DETAIL_PAGE = "api/showApiDetails";
-	private final static String DELETE_API_DETAIL_PAGE = "api/deleteApiDetails";
+	private static final String SHOW_API_DETAIL_PAGE = "api/showApiDetails";
+	private static final String DELETE_API_DETAIL_PAGE = "api/deleteApiDetails";
 	
 	@Autowired
 	public StubApiController(ApiDetailsService apiDetailsService) {
@@ -35,7 +35,7 @@ public class StubApiController {
     	ApiDetails apiDetails=new ApiDetails();
     	apiDetails.setCurrentUser(username);
     	model.addAttribute("apiDetails", apiDetails);
-    	return "api/register";
+    	return "api/createApi";
     }
     
     //Save api details to db 

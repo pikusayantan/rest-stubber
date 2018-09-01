@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="../../css/styles.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p th:text="'Hello , ' + ${apiDetails.currentUser} + '!'" />
+	<div>
+		<h3>Create Resource for the APIs</h3>
+
+		<form th:action="@{/stubber/api/register/save}" th:object="${apiDetails}" method="post">
+			<label for="apiName">Enter API Name</label> 
+			<input type="text" id="apiName" placeholder="Ex. my-sample-api" th:field="*{apiName}">
+			<input type="hidden" id="currentUser" th:field="*{currentUser}">
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+</body>
+</html>
