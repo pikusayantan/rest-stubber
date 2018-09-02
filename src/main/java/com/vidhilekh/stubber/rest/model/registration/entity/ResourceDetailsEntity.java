@@ -34,15 +34,6 @@ public class ResourceDetailsEntity implements Serializable {
 	@Column(name = "RESOURCE_METHOD")
 	private String resourceMethod;
 	
-	@Column(name = "RESOURCE_DEFAULT_HEADERS")
-	private String resourceDefaultHeaders;
-	
-	@Column(name = "RESOURCE_QUERY_PARAMS")
-	private String resourceQueryParam;
-	
-	@Column(name = "DEFAULT_HTTP_ST_CD")
-	private String defaultHttpStCd;
-	
 	@Column(name = "CREATED_BY", updatable = false)
 	private String createdBy;
 
@@ -81,30 +72,6 @@ public class ResourceDetailsEntity implements Serializable {
 
 	public void setResourceMethod(String resourceMethod) {
 		this.resourceMethod = resourceMethod;
-	}
-
-	public String getResourceDefaultHeaders() {
-		return resourceDefaultHeaders;
-	}
-
-	public void setResourceDefaultHeaders(String resourceDefaultHeaders) {
-		this.resourceDefaultHeaders = resourceDefaultHeaders;
-	}
-
-	public String getResourceQueryParam() {
-		return resourceQueryParam;
-	}
-
-	public void setResourceQueryParam(String resourceQueryParam) {
-		this.resourceQueryParam = resourceQueryParam;
-	}
-
-	public String getDefaultHttpStCd() {
-		return defaultHttpStCd;
-	}
-
-	public void setDefaultHttpStCd(String defaultHttpStCd) {
-		this.defaultHttpStCd = defaultHttpStCd;
 	}
 
 	public String getCreatedBy() {

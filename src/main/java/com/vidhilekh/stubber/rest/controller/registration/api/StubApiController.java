@@ -27,10 +27,9 @@ public class StubApiController {
 	public StubApiController(ApiDetailsService apiDetailsService) {
 		this.apiDetailsService = apiDetailsService;
 	}
-	
 
 	//API register
-    @GetMapping("/stubber/api/register")
+    @GetMapping("/stubber/api/create")
     public String apiRegister(Model model, @RequestParam String username) {
     	ApiDetails apiDetails=new ApiDetails();
     	apiDetails.setCurrentUser(username);
@@ -39,7 +38,7 @@ public class StubApiController {
     }
     
     //Save api details to db 
-    @PostMapping("/stubber/api/register/save")
+    @PostMapping("/stubber/api/create/save")
     public String saveApi(Model model, @ModelAttribute ApiDetails apiDetails) {
     	ApiDetails apiDetailsResp = apiDetailsService.saveApiDetails(apiDetails);
     	RenderShowApiDetails renderShowApiDetails = new RenderShowApiDetails();
@@ -165,7 +164,7 @@ public class StubApiController {
         return DELETE_API_DETAIL_PAGE;
     }
     
-    //Detail API search when sidepane Search option clicked
+    //Detail API search when sidepane Search option clicked need to be done
     @GetMapping("/stubber/api/detailSearch")
     public String detailSearch(Model model, @RequestParam String username) {
     	

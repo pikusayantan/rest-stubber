@@ -1,15 +1,12 @@
 package com.vidhilekh.stubber.rest.utils;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.util.Arrays;
+import java.util.List;
 
 public class CommonUtils {
 	
-	public static String convertTimestampToString(Timestamp ts) {
-		Date date=ts;
+	public static final List<String> httpMethods = Arrays.asList("GET", "POST", "PUT");
 		
-		return "";
-		
-	}
+	
 
 }

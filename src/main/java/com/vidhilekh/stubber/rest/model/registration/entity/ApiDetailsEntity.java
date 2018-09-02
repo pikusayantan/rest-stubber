@@ -2,6 +2,7 @@ package com.vidhilekh.stubber.rest.model.registration.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -42,7 +43,7 @@ public class ApiDetailsEntity implements Serializable {
 	private Timestamp lastModifiedOn;
 	
 	@OneToMany(mappedBy="apiDetailsEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
-	private List<ResourceDetailsEntity> resourceDetailsEntityList;
+	private List<ResourceDetailsEntity> resourceDetailsEntityList = new ArrayList<>();
 
 	public Long getApiId() {
 		return apiId;

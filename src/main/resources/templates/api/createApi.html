@@ -9,7 +9,7 @@
 	<div>
 		<h3>Welcome to API Registration Page</h3>
 
-		<form th:action="@{/stubber/api/register/save}" th:object="${apiDetails}" method="post">
+		<form th:action="@{/stubber/api/create/save}" th:object="${apiDetails}" method="post">
 			<label for="apiName">Enter API Name</label> 
 			<input type="text" id="apiName" placeholder="Ex. my-sample-api" th:field="*{apiName}">
 			<input type="hidden" id="currentUser" th:field="*{currentUser}">

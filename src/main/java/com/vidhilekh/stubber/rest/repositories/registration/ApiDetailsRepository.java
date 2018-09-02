@@ -8,6 +8,8 @@ import com.vidhilekh.stubber.rest.model.registration.entity.ApiDetailsEntity;
 
 public interface ApiDetailsRepository extends JpaRepository<ApiDetailsEntity, Long> {
 
-	List<ApiDetailsEntity> findByApiNameContainingIgnoreCase(String apiName);	
+	List<ApiDetailsEntity> findByApiNameContainingIgnoreCase(String apiName);
+
+	ApiDetailsEntity findByApiName(String apiName);	
 
 }

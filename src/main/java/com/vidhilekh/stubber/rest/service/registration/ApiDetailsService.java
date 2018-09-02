@@ -1,11 +1,14 @@
 package com.vidhilekh.stubber.rest.service.registration;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vidhilekh.stubber.rest.mapping.registration.ApiDetailsEntityToApiDetails;
 import com.vidhilekh.stubber.rest.mapping.registration.ApiDetailsToApiDetailsEntity;
 import com.vidhilekh.stubber.rest.model.registration.ApiDetails;
@@ -41,8 +44,24 @@ public class ApiDetailsService {
 	}
 
 	public List<ApiDetailsEntity> searchApiDetailsList(ApiDetails apiDetails) {
-		List<ApiDetailsEntity> respList = apiDetailsRepository.findByApiNameContainingIgnoreCase(apiDetails.getApiName());
-		return respList;
+		return apiDetailsRepository.findByApiNameContainingIgnoreCase(apiDetails.getApiName());
+	}
+	
+	//Return list of api name in json string by searching apiName pattern
+	public String searchApiNameByNamePattern(String apiName) {
+		List<ApiDetailsEntity> resp = apiDetailsRepository.findByApiNameContainingIgnoreCase(apiName);
+		List<String> apiNameList = new ArrayList<>();
+		for(ApiDetailsEntity entity : resp) {
+			apiNameList.add(entity.getApiName());
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonSt = null;
+		try {
+			jsonSt = mapper.writeValueAsString(apiNameList);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return jsonSt;
 	}
 
 	public ApiDetails searchApiDetailsById(ApiDetails apiDetails) {
