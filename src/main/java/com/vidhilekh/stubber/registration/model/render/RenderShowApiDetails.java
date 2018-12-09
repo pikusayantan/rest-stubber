@@ -1,6 +1,8 @@
 package com.vidhilekh.stubber.registration.model.render;
 
-//Render variable for showApiDetails.html page
+/*
+ * Render variable for showApiDetails.html page
+ */
 public class RenderShowApiDetails {
 	
 	private boolean showSearchDiv;

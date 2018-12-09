@@ -22,6 +22,8 @@ public class StubApiController {
 	private final ApiDetailsService apiDetailsService;
 	private static final String SHOW_API_DETAIL_PAGE = "api/showApiDetails";
 	private static final String DELETE_API_DETAIL_PAGE = "api/deleteApiDetails";
+	private static final String RENDER_SHOW_API_DETAILS = "renderShowApiDetails";
+	private static final String API_DETAILS = "apiDetails";
 	
 	@Autowired
 	public StubApiController(ApiDetailsService apiDetailsService) {
@@ -43,8 +45,8 @@ public class StubApiController {
     	ApiDetails apiDetailsResp = apiDetailsService.saveApiDetails(apiDetails);
     	RenderShowApiDetails renderShowApiDetails = new RenderShowApiDetails();
     	renderShowApiDetails.setShowDisplayApiDiv(true);
-    	model.addAttribute("apiDetails", apiDetailsResp);
-    	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
+    	model.addAttribute(API_DETAILS, apiDetailsResp);
+    	model.addAttribute(RENDER_SHOW_API_DETAILS, renderShowApiDetails);
         return SHOW_API_DETAIL_PAGE;
     }
     
@@ -53,8 +55,8 @@ public class StubApiController {
     public String editApi(Model model, @ModelAttribute ApiDetails apiDetails) {
     	RenderShowApiDetails renderShowApiDetails = new RenderShowApiDetails();
     	renderShowApiDetails.setShowEditApiDiv(true);
-    	model.addAttribute("apiDetails", apiDetails);
-    	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
+    	model.addAttribute(API_DETAILS, apiDetails);
+    	model.addAttribute(RENDER_SHOW_API_DETAILS, renderShowApiDetails);
         return SHOW_API_DETAIL_PAGE;
     }
     
@@ -64,8 +66,8 @@ public class StubApiController {
     	ApiDetails apiDetailsResp = apiDetailsService.updateApiDetails(apiDetails);
     	RenderShowApiDetails renderShowApiDetails = new RenderShowApiDetails();
     	renderShowApiDetails.setShowDisplayApiDiv(true);
-    	model.addAttribute("apiDetails", apiDetailsResp);
-    	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
+    	model.addAttribute(API_DETAILS, apiDetailsResp);
+    	model.addAttribute(RENDER_SHOW_API_DETAILS, renderShowApiDetails);
         return SHOW_API_DETAIL_PAGE;
     }
     
@@ -77,8 +79,8 @@ public class StubApiController {
     	ApiDetails apiDetails = new ApiDetails();
     	apiDetails.setCurrentUser(username);
     	apiDetails.setOperation("edit");
-    	model.addAttribute("apiDetails", apiDetails);
-    	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
+    	model.addAttribute(API_DETAILS, apiDetails);
+    	model.addAttribute(RENDER_SHOW_API_DETAILS, renderShowApiDetails);
         return SHOW_API_DETAIL_PAGE;
     }
     
@@ -89,7 +91,7 @@ public class StubApiController {
     	List<ApiDetailsEntity> apiDetailsRespList = apiDetailsService.searchApiDetailsList(apiDetails);
     	
     	model.addAttribute("apiDetailsList", apiDetailsRespList);
-    	model.addAttribute("apiDetails", apiDetails);
+    	model.addAttribute(API_DETAILS, apiDetails);
     	
     	if(apiDetails.getOperation().equalsIgnoreCase("edit")) {
     		RenderShowApiDetails renderShowApiDetails = new RenderShowApiDetails();
@@ -99,7 +101,7 @@ public class StubApiController {
         		renderShowApiDetails.setShowSearchListDiv(true);
         	}
         	renderShowApiDetails.setShowSearchDiv(true);
-        	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
+        	model.addAttribute(RENDER_SHOW_API_DETAILS, renderShowApiDetails);
     		return SHOW_API_DETAIL_PAGE;
     	} 
     	else if(apiDetails.getOperation().equalsIgnoreCase("delete")){
@@ -110,7 +112,7 @@ public class StubApiController {
         		renderDeleteApiDetails.setShowSearchListDiv(true);
         	}
     		renderDeleteApiDetails.setShowSearchDiv(true);
-        	model.addAttribute("renderDeleteApiDetails", renderDeleteApiDetails);
+        	model.addAttribute(RENDER_SHOW_API_DETAILS, renderDeleteApiDetails);
     		return DELETE_API_DETAIL_PAGE;
     	} 
     	return null;
@@ -128,8 +130,8 @@ public class StubApiController {
     	RenderShowApiDetails renderShowApiDetails = new RenderShowApiDetails();
     	renderShowApiDetails.setShowEditApiDiv(true);
     	
-    	model.addAttribute("apiDetails", apiDetailsResp);
-    	model.addAttribute("renderShowApiDetails", renderShowApiDetails);
+    	model.addAttribute(API_DETAILS, apiDetailsResp);
+    	model.addAttribute(RENDER_SHOW_API_DETAILS, renderShowApiDetails);
         return SHOW_API_DETAIL_PAGE;
     }
     
@@ -141,8 +143,8 @@ public class StubApiController {
     	ApiDetails apiDetails = new ApiDetails();
     	apiDetails.setCurrentUser(username);
     	apiDetails.setOperation("delete");
-    	model.addAttribute("apiDetails", apiDetails);
-    	model.addAttribute("renderDeleteApiDetails", renderDeleteApiDetails);
+    	model.addAttribute(API_DETAILS, apiDetails);
+    	model.addAttribute(RENDER_SHOW_API_DETAILS, renderDeleteApiDetails);
         return DELETE_API_DETAIL_PAGE;
     }
     
@@ -159,8 +161,8 @@ public class StubApiController {
     	renderDeleteApiDetails.setShowSearchDiv(true);
     	renderDeleteApiDetails.setShowDeleteMessageDiv(true);
     	
-    	model.addAttribute("apiDetails", apiDetailsResp);
-    	model.addAttribute("renderDeleteApiDetails", renderDeleteApiDetails);
+    	model.addAttribute(API_DETAILS, apiDetailsResp);
+    	model.addAttribute(RENDER_SHOW_API_DETAILS, renderDeleteApiDetails);
         return DELETE_API_DETAIL_PAGE;
     }
     
@@ -170,7 +172,7 @@ public class StubApiController {
     	
     	ApiDetails apiDetails = new ApiDetails();
     	apiDetails.setCurrentUser(username);
-    	model.addAttribute("apiDetails", apiDetails);
+    	model.addAttribute(API_DETAILS, apiDetails);
         return "api/detailSearch";
     }
 	
