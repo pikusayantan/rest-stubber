@@ -35,7 +35,7 @@ public class StubApiController {
     public String apiRegister(Model model, @RequestParam String username) {
     	ApiDetails apiDetails=new ApiDetails();
     	apiDetails.setCurrentUser(username);
-    	model.addAttribute("apiDetails", apiDetails);
+    	model.addAttribute(API_DETAILS, apiDetails);
     	return "api/createApi";
     }
     

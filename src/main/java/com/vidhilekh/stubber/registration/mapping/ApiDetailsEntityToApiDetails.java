@@ -19,7 +19,7 @@ public class ApiDetailsEntityToApiDetails {
 		apiDetails.setLastModifiedOn(apiDetailsEntity.getLastModifiedOn().toLocalDateTime().toString());
 		return apiDetails;
 	}
-	
+
 	public ApiDetails convertForUpdate(ApiDetailsEntity apiDetailsEntity, ApiDetails apiDetailsResp) {
 		ApiDetails apiDetails = new ApiDetails();
 		apiDetails.setCurrentUser(apiDetailsResp.getCurrentUser());
