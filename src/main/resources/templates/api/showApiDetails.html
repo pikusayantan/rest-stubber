@@ -37,6 +37,7 @@
 		</form>
 	</div>
 	
+	<!-- This will render when Edit(API) is clicked on left pane -->
 	<div th:if="${renderShowApiDetails.showSearchDiv}">
 		<h3>Edit API Details</h3>
 		
@@ -54,6 +55,7 @@
 		<p th:text="'No API found with name matching ' + ${apiDetails.apiName}" />
 	</div>
 	
+	<!-- This page will render when search button in edit api page is clicked showing all matching apis present -->
 	<div th:if="${renderShowApiDetails.showSearchListDiv}">
 		<table id="t01">
 			<tr>

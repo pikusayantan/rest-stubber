@@ -23,6 +23,7 @@ public class StubApiController {
 	private static final String SHOW_API_DETAIL_PAGE = "api/showApiDetails";
 	private static final String DELETE_API_DETAIL_PAGE = "api/deleteApiDetails";
 	private static final String RENDER_SHOW_API_DETAILS = "renderShowApiDetails";
+	private static final String RENDER_DELETE_API_DETAILS = "renderDeleteApiDetails";
 	private static final String API_DETAILS = "apiDetails";
 	
 	@Autowired
@@ -112,7 +113,7 @@ public class StubApiController {
         		renderDeleteApiDetails.setShowSearchListDiv(true);
         	}
     		renderDeleteApiDetails.setShowSearchDiv(true);
-        	model.addAttribute(RENDER_SHOW_API_DETAILS, renderDeleteApiDetails);
+        	model.addAttribute(RENDER_DELETE_API_DETAILS, renderDeleteApiDetails);
     		return DELETE_API_DETAIL_PAGE;
     	} 
     	return null;
@@ -144,7 +145,7 @@ public class StubApiController {
     	apiDetails.setCurrentUser(username);
     	apiDetails.setOperation("delete");
     	model.addAttribute(API_DETAILS, apiDetails);
-    	model.addAttribute(RENDER_SHOW_API_DETAILS, renderDeleteApiDetails);
+    	model.addAttribute(RENDER_DELETE_API_DETAILS, renderDeleteApiDetails);
         return DELETE_API_DETAIL_PAGE;
     }
     
@@ -162,7 +163,7 @@ public class StubApiController {
     	renderDeleteApiDetails.setShowDeleteMessageDiv(true);
     	
     	model.addAttribute(API_DETAILS, apiDetailsResp);
-    	model.addAttribute(RENDER_SHOW_API_DETAILS, renderDeleteApiDetails);
+    	model.addAttribute(RENDER_DELETE_API_DETAILS, renderDeleteApiDetails);
         return DELETE_API_DETAIL_PAGE;
     }
     
