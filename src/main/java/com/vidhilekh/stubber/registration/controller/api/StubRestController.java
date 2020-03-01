@@ -1,6 +1,9 @@
 package com.vidhilekh.stubber.registration.controller.api;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,10 +14,13 @@ import com.vidhilekh.stubber.registration.service.ApiDetailsService;
 public class StubRestController {
 	
 	private final ApiDetailsService apiDetailsService;
+    private final String resourceString;
 	
 	@Autowired
-	public StubRestController(ApiDetailsService apiDetailsService) {
+	public StubRestController(ApiDetailsService apiDetailsService,
+			String resourceString) {
 		this.apiDetailsService = apiDetailsService;
+		this.resourceString = resourceString;
 	}
 	
 	/*
@@ -26,5 +32,10 @@ public class StubRestController {
     	System.out.println("Ajax call made, and returned.." + apiName);
 		return apiDetailsService.searchApiNameByNamePattern(apiName);
     }
+    
+	@GetMapping(path = "/css/styles.css", consumes = MediaType.ALL_VALUE , produces = MediaType.ALL_VALUE)
+	public String getCss() throws IOException {
+		return resourceString;
+	}
 
 }
