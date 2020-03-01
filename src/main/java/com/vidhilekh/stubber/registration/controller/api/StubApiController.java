@@ -155,6 +155,7 @@ public class StubApiController {
     	ApiDetails apiDetails = new ApiDetails();
     	apiDetails.setCurrentUser(username);
     	apiDetails.setApiId(Long.parseLong(apiid));
+    	apiDetails.setOperation("delete");
     	
     	ApiDetails apiDetailsResp = apiDetailsService.deleteApiDetailsById(apiDetails);
     	
