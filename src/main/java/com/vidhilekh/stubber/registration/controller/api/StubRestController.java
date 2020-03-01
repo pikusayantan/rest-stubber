@@ -33,6 +33,10 @@ public class StubRestController {
 		return apiDetailsService.searchApiNameByNamePattern(apiName);
     }
     
+    /*
+	 * This method will return css content under resource folder
+	 * /Resources/static/css/styles.css
+	 */
 	@GetMapping(path = "/css/styles.css", consumes = MediaType.ALL_VALUE , produces = MediaType.ALL_VALUE)
 	public String getCss() throws IOException {
 		return resourceString;

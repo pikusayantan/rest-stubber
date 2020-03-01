@@ -22,7 +22,7 @@ public class StubResourceController {
 		this.resourceDetailsService = resourceDetailsService;
 	}
 	
-	//Resource creation for the API
+	//When Resource > Create is clicked on left pane from main frame
     @GetMapping("/stubber/resource/create")
     public String apiRegister(Model model, @RequestParam String username) {
     	ResourceDetails resourceDetails = new ResourceDetails();
@@ -32,11 +32,9 @@ public class StubResourceController {
     	return "resource/createResource";
     }
     
-    //Save resource details to db 
+    //Save resource details to db when Submit button is clicked in Create Resource page
     @PostMapping("/stubber/resource/create/save")
     public String saveApi(Model model, @ModelAttribute ResourceDetails resourceDetails) {
-    	System.out.println("+++++============+++++++"+resourceDetails.getApiName());
-    	System.out.println("+++++============+++++++"+resourceDetails.getResourceMethod());
     	resourceDetailsService.saveResourceDetails(resourceDetails);
     	return "resource/createResource";
     }

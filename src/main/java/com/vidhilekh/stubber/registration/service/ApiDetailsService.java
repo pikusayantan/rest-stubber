@@ -31,18 +31,21 @@ public class ApiDetailsService {
 		this.apiDetailsRepository = apiDetailsRepository;
 	}
 
+	//Save API details
 	public ApiDetails saveApiDetails(ApiDetails apiDetails) {
 		ApiDetailsEntity apiDetailsEntity = apiDetailsToApiDetailsEntity.convertToSave(apiDetails);
 		ApiDetailsEntity resp = apiDetailsRepository.save(apiDetailsEntity);
 		return apiDetailsEntityToApiDetails.convertForSave(resp, apiDetails.getCurrentUser());
 	}
 	
+	//Update api details
 	public ApiDetails updateApiDetails(ApiDetails apiDetails) {
 		ApiDetailsEntity apiDetailsEntity = apiDetailsToApiDetailsEntity.convertToUpdate(apiDetails);
 		ApiDetailsEntity resp = apiDetailsRepository.save(apiDetailsEntity);
 		return apiDetailsEntityToApiDetails.convertForUpdate(resp, apiDetails);
 	}
 
+	//Search API details by Api Name
 	public List<ApiDetailsEntity> searchApiDetailsList(ApiDetails apiDetails) {
 		return apiDetailsRepository.findByApiNameContainingIgnoreCase(apiDetails.getApiName());
 	}
@@ -64,6 +67,7 @@ public class ApiDetailsService {
 		return jsonSt;
 	}
 
+	//Search Api details by Api ID
 	public ApiDetails searchApiDetailsById(ApiDetails apiDetails) {
 		Optional<ApiDetailsEntity> resp = apiDetailsRepository.findById(apiDetails.getApiId());
 		ApiDetailsEntity respEntity = null;
@@ -75,6 +79,7 @@ public class ApiDetailsService {
 		return apiDetailsEntityToApiDetails.convertForSave(respEntity, apiDetails.getCurrentUser());
 	}
 
+	//Delete Api details by Api Id
 	public ApiDetails deleteApiDetailsById(ApiDetails apiDetails) {
 		ApiDetailsEntity apiDetailsEntity = apiDetailsToApiDetailsEntity.convertToDeleteById(apiDetails);
 		apiDetailsRepository.delete(apiDetailsEntity);
