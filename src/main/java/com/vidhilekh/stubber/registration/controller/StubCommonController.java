@@ -1,4 +1,4 @@
-package com.vidhilekh.stubber.registration.controller.api;
+package com.vidhilekh.stubber.registration.controller;
 
 import java.io.IOException;
 
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vidhilekh.stubber.registration.service.ApiDetailsService;
 
 @RestController
-public class StubRestController {
+public class StubCommonController {
 	
 	private final ApiDetailsService apiDetailsService;
     private final String resourceString;
 	
 	@Autowired
-	public StubRestController(ApiDetailsService apiDetailsService,
+	public StubCommonController(ApiDetailsService apiDetailsService,
 			String resourceString) {
 		this.apiDetailsService = apiDetailsService;
 		this.resourceString = resourceString;

@@ -1,4 +1,4 @@
-package com.vidhilekh.stubber.registration.controller.api;
+package com.vidhilekh.stubber.registration.controller;
 
 import java.util.List;
 

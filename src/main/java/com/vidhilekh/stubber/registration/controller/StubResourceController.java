@@ -1,4 +1,4 @@
-package com.vidhilekh.stubber.registration.controller.resource;
+package com.vidhilekh.stubber.registration.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
