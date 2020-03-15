@@ -15,6 +15,9 @@ import com.vidhilekh.stubber.registration.utils.CommonUtils;
 @Controller
 public class StubResourceController {
 	
+	private static final String RESOURCE_DETAILS = "resourceDetails";
+	private static final String HTTP_METHOD_LIST = "httpMethodList";
+	
 	private final ResourceDetailsService resourceDetailsService;
 	
 	@Autowired
@@ -27,8 +30,8 @@ public class StubResourceController {
     public String apiRegister(Model model, @RequestParam String username) {
     	ResourceDetails resourceDetails = new ResourceDetails();
     	resourceDetails.setCurrentUser(username);
-    	model.addAttribute("resourceDetails", resourceDetails);
-    	model.addAttribute("httpMethodList", CommonUtils.httpMethods);
+    	model.addAttribute(RESOURCE_DETAILS, resourceDetails);
+    	model.addAttribute(HTTP_METHOD_LIST, CommonUtils.httpMethods);
     	return "resource/createResource";
     }
     
@@ -36,6 +39,11 @@ public class StubResourceController {
     @PostMapping("/stubber/resource/create/save")
     public String saveApi(Model model, @ModelAttribute ResourceDetails resourceDetails) {
     	resourceDetailsService.saveResourceDetails(resourceDetails);
+    	ResourceDetails resourceDetailsModel = new ResourceDetails();
+    	resourceDetailsModel.setCurrentUser(resourceDetails.getCurrentUser());
+    	resourceDetailsModel.setApiName(resourceDetails.getApiName());
+    	model.addAttribute(RESOURCE_DETAILS, resourceDetailsModel);
+    	model.addAttribute(HTTP_METHOD_LIST, CommonUtils.httpMethods);
     	return "resource/createResource";
     }
 
