@@ -58,7 +58,8 @@
             <label for="resourceName">Enter API Resource</label>
             <input type="text" id="resourceName" placeholder="Ex. /sample/hello/{id}" th:field="*{resourceName}">
 
-            <select th:field="*{resourceMethod}">
+            <label for="resourceMethod">Select HTTP Method</label>
+            <select id="resourceMethod" th:field="*{resourceMethod}">
                 <option th:each="method: ${httpMethodList}" th:value="${method}" th:text="${method}"></option>
             </select>
 
