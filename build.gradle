@@ -2,7 +2,7 @@ group 'com.vidhilekh.stubber'
 version = '0.1.0'
 buildscript {
     ext {
-        springBootVersion = '2.2.2.RELEASE'
+        springBootVersion = '2.2.6.RELEASE'
     }
     repositories {
         mavenCentral()
