@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script>
+        function showResult(str) {
+            var dataList = document.getElementById('apiname-datalist');
+            var input = document.getElementById('apiName');
+            dataList.innerHTML = '';
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else { // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange = function(response) {
+                if (xmlhttp.readyState === 4) {
+                    if (xmlhttp.status === 200) {
+                        // Parse the JSON
+                        var jsonOptions = JSON.parse(xmlhttp.responseText);
+                        // Loop over the JSON array.
+                        jsonOptions.forEach(function(item) {
+                            // Create a new <option> element.
+                            var option = document.createElement('option');
+                            // Set the value using the item in the JSON array.
+                            option.value = item;
+                            // Add the <option> element to the <datalist>.
+                            dataList.appendChild(option);
+                        });
+
+                        // Update the placeholder text.
+                        input.placeholder = "Ex. my-sample-api";
+                    } else {
+                        // An error occured
+                        input.placeholder = "Couldn't load list of api name..";
+                    }
+                }
+            };
+            xmlhttp.open('GET', '/stubber/api/search?apiName=' + str, true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
+
+<body>
+    <p th:text="'Hello , ' + ${resourceDetails.currentUser} + '!'" />
+    <div>
+        <h3>Create Mocks for the APIs</h3>
+
+        <form th:action="@{/stubber/mock/create/save}" th:object="${resourceDetails}" method="post">
+            <label for="apiName">Enter API Name</label>
+            <input type="text" id="apiName" th:field="*{apiName}" list="apiname-datalist" onkeyup="showResult(this.value)">
+            <datalist id="apiname-datalist"></datalist>
+
+            <label for="resourceName">Enter API Resource</label>
+            <input type="text" id="resourceName" placeholder="Ex. /sample/hello/{id}" th:field="*{resourceName}">
+
+            <select th:field="*{resourceMethod}">
+                <option th:each="method: ${httpMethodList}" th:value="${method}" th:text="${method}"></option>
+            </select>
+
+            <input type="hidden" id="currentUser" th:field="*{currentUser}">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>

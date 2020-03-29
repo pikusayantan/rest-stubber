@@ -105,11 +105,11 @@ iframe {
     <a href="#">Edit</a>
     <a href="#">Delete</a>
   </div>
-  <button class="dropdown-btn">Stub 
+  <button class="dropdown-btn">Mock 
     <i class="sa-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="#">Link 1</a>
+    <a th:href="@{'/stubber/mock/create?username='+ ${loggedUser.username}}" target="iframe_a" data-hash="create">Create</a>
     <a href="#">Link 2</a>
     <a href="#">Link 3</a>
   </div>
@@ -117,14 +117,13 @@ iframe {
 </div>
 
 <div class="main">
-<iframe th:src="@{'/stubber/dashboard?username='+ ${loggedUser.username}}" width="100%" name="iframe_a"></iframe>
+  <iframe th:src="@{'/stubber/dashboard?username='+ ${loggedUser.username}}" width="100%" name="iframe_a"></iframe>
 </div>
 
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");
 var i;
-
 for (i = 0; i < dropdown.length; i++) {
   dropdown[i].addEventListener("click", function() {
     this.classList.toggle("active");
